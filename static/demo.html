@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- 30 行极简前端（设计 §7 static/demo.html）：仅本地演示，美观度不做投入 -->
+<html lang="zh">
+<head><meta charset="utf-8"><title>Rental Agent Demo</title></head>
+<body style="font-family: monospace; max-width: 720px; margin: 2em auto">
+<h3>毕业生租房决策 Agent</h3>
+<div id="log" style="white-space: pre-wrap; border: 1px solid #ccc; padding: 8px; min-height: 300px"></div>
+<input id="text" style="width: 70%" placeholder="预算3000，公司在西二旗软件园，通勤45分钟内">
+<button onclick="send()">发送</button>
+<script>
+let threadId = null;
+async function send() {
+  const text = document.getElementById('text').value;
+  const url = threadId ? `/chat/${threadId}` : '/chat';
+  const res = await fetch(url, {method: 'POST', headers: {'Content-Type': 'application/json'},
+                                body: JSON.stringify({text})});
+  const data = await res.json();
+  threadId = data.thread_id;
+  document.getElementById('log').textContent += `\n[你] ${text}\n[Agent·${data.type}] ${data.content}\n`;
+  document.getElementById('text').value = '';
+}
+</script>
+</body>
+</html>

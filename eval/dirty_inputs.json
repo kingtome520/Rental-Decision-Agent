@@ -1,0 +1,37 @@
+[
+  {
+    "id": "dirty_01",
+    "input": "预算3000，公司在西二旗，通勤45分钟内",
+    "expect": "clarify",
+    "expect_detail": "缺 commute_mode，必触发一次澄清；回答'随便'后用默认公交并标注",
+    "env": {"MOCK_LLM": "1", "MOCK_MAP": "1"}
+  },
+  {
+    "id": "dirty_02",
+    "input": "预算800，公司在国贸，通勤30分钟内，公交",
+    "expect": "negotiate",
+    "expect_detail": "预算低于全池最低价 → 直接进入协商，提示'该预算低于池内最低价 X'",
+    "env": {"MOCK_LLM": "1", "MOCK_MAP": "1"}
+  },
+  {
+    "id": "dirty_03",
+    "input": "预算3000，公司在火星基地，通勤45分钟内，公交",
+    "expect": "failed",
+    "expect_detail": "目的地无法地理编码 → 提示重输，不进入筛选",
+    "env": {"MOCK_LLM": "1", "MOCK_MAP": "1"}
+  },
+  {
+    "id": "dirty_04",
+    "input": "预算3000，公司在望京SOHO，通勤45分钟内，公交",
+    "expect": "report",
+    "expect_detail": "地图 API 全超时 → 报告正常产出且通勤标注'估算值'（source=estimate）",
+    "env": {"MOCK_LLM": "1", "MOCK_MAP": "1", "MAP_FAIL_RATE": "1.0"}
+  },
+  {
+    "id": "dirty_05",
+    "input": "预算随便，帮我看看北京租房",
+    "expect": "clarify",
+    "expect_detail": "解析失败与缺槽位走同一澄清分支；一次只问一个（budget_max 优先）",
+    "env": {"MOCK_LLM": "1", "MOCK_MAP": "1"}
+  }
+]

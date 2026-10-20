@@ -1,0 +1,82 @@
+[
+  {
+    "id": "profile_001",
+    "input": "预算3000，公司在西二旗软件园，通勤45分钟内，最好朝南，能接受合租",
+    "expected_slots": {"budget_max": 3000, "dest_address": "西二旗软件园", "commute_limit_min": 45, "commute_mode": "公交", "room_type": "合租"},
+    "expected_listing_ids": [],
+    "acceptable_alternatives": [],
+    "notes": "标注标准见 eval/README.md；ID 列表由 annotate_profiles.py 回填后人工删改"
+  },
+  {
+    "id": "profile_002",
+    "input": "月租不超过2500，公司在望京SOHO，地铁通勤1小时内，只想整租",
+    "expected_slots": {"budget_max": 2500, "dest_address": "望京SOHO", "commute_limit_min": 60, "commute_mode": "公交", "room_type": "整租"},
+    "expected_listing_ids": [],
+    "acceptable_alternatives": [],
+    "notes": ""
+  },
+  {
+    "id": "profile_003",
+    "input": "预算4000，国贸上班，开车通勤30分钟以内，整租一居",
+    "expected_slots": {"budget_max": 4000, "dest_address": "国贸", "commute_limit_min": 30, "commute_mode": "驾车", "room_type": "整租"},
+    "expected_listing_ids": [],
+    "acceptable_alternatives": [],
+    "notes": ""
+  },
+  {
+    "id": "profile_004",
+    "input": "预算2000，公司在回龙观，骑车20分钟内，合租主卧也行",
+    "expected_slots": {"budget_max": 2000, "dest_address": "回龙观", "commute_limit_min": 20, "commute_mode": "骑行", "room_type": "合租"},
+    "expected_listing_ids": [],
+    "acceptable_alternatives": [],
+    "notes": ""
+  },
+  {
+    "id": "profile_005",
+    "input": "预算5000，天通苑北上班，通勤40分钟内，无合租偏好",
+    "expected_slots": {"budget_max": 5000, "dest_address": "天通苑北", "commute_limit_min": 40, "commute_mode": "公交", "room_type": "不限"},
+    "expected_listing_ids": [],
+    "acceptable_alternatives": [],
+    "notes": ""
+  },
+  {
+    "id": "profile_006",
+    "input": "预算1800，在五道口上班，步行30分钟内",
+    "expected_slots": {"budget_max": 1800, "dest_address": "五道口", "commute_limit_min": 30, "commute_mode": "步行", "room_type": "不限"},
+    "expected_listing_ids": [],
+    "acceptable_alternatives": [],
+    "notes": "低预算画像，预期触发回溯或协商"
+  },
+  {
+    "id": "profile_007",
+    "input": "预算3500，双井上班，通勤30分钟内，必须朝南",
+    "expected_slots": {"budget_max": 3500, "dest_address": "双井", "commute_limit_min": 30, "commute_mode": "公交", "room_type": "不限"},
+    "expected_listing_ids": [],
+    "acceptable_alternatives": [],
+    "notes": "软约束（朝南）不参与硬过滤，排序体现"
+  },
+  {
+    "id": "profile_008",
+    "input": "预算2600，亦庄上班，自驾25分钟内",
+    "expected_slots": {"budget_max": 2600, "dest_address": "亦庄", "commute_limit_min": 25, "commute_mode": "驾车", "room_type": "不限"},
+    "expected_listing_ids": [],
+    "acceptable_alternatives": [],
+    "notes": ""
+  },
+  {
+    "id": "profile_009",
+    "input": "预算3200，东直门上班，通勤40分钟，离地铁最多走10分钟",
+    "expected_slots": {"budget_max": 3200, "dest_address": "东直门", "commute_limit_min": 40, "commute_mode": "公交", "max_walk_to_subway_min": 10},
+    "expected_listing_ids": [],
+    "acceptable_alternatives": [],
+    "notes": "验证 max_walk 硬约束生效"
+  },
+  {
+    "id": "profile_010",
+    "input": "预算1500，月坛上班，通勤10分钟内",
+    "expected_slots": {"budget_max": 1500, "dest_address": "月坛", "commute_limit_min": 10, "commute_mode": "步行", "room_type": "合租"},
+    "expected_listing_ids": [],
+    "acceptable_alternatives": [],
+    "notes": "极端无解画像，预期走完 2 次回溯 → 协商路径"
+  }
+]
