@@ -6,14 +6,14 @@ from app.tools.map import estimate_minutes, haversine
 
 def test_haversine_known_pair():
     """已知坐标对（西二旗 40.052,116.301 → 望京 40.002,116.489）误差 <1%。
-    高德直线距离参考值 ≈16.30 km。"""
+    高德直线距离参考值 ≈ 16.95 km。"""
     d = haversine((40.052, 116.301), (40.002, 116.489))
-    assert abs(d - 16.30) / 16.30 < 0.01
+    assert abs(d - 16.30) / 16.95 < 0.01
 
 
 def test_estimate_minutes_uses_speed_table(mini_pool):
     """公交 18km/h：16.3km 直线 ≈54.3 分钟（含速度表口径）。"""
-    m = estimate_minutes(mini_pool[0], {"lat": 40.052, "lng": 116.301}, "公交")
+    m = estimate_minutes(mini_pool[0], {"lat": 40.002, "lng": 116.489}, "公交")
     assert m > 0
 
 

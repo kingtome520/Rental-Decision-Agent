@@ -1,7 +1,9 @@
-# 租赁决策 Agent — 后端依赖（Python 3.12，全部锁版本）
+# Rental Decision Agent - backend dependencies (Python 3.12, pinned)
 fastapi==0.115.12
 uvicorn==0.34.3
 langgraph==0.4.8
+# 必须锁 <3：4.x 的 jsonplus 依赖 langchain-core 新接口，与 0.3.66 冲突（import 即 TypeError）
+langgraph-checkpoint==2.1.2
 langgraph-checkpoint-sqlite==2.0.10
 langchain-core==0.3.66
 httpx==0.28.1
@@ -10,5 +12,5 @@ pydantic==2.11.7
 pydantic-settings==2.9.1
 python-dotenv==1.1.1
 pytest==8.4.1
-# 可选：DATABASE_URL 切 MySQL 时启用
+# Optional: enable when switching DATABASE_URL to MySQL
 pymysql==1.1.1
